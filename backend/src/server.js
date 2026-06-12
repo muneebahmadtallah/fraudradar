@@ -51,17 +51,18 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Serve Angular front‑end in production
-if (process.env.NODE_ENV === 'production') {
-  const path = require('path');
-  const clientBuildPath = path.resolve(__dirname, '../../frontend/dist');
+const path = require('path');
+const fs = require('fs');
+// Resolve the Angular build output directory (dist/frontend)
+const clientBuildPath = path.resolve(__dirname, '../../frontend/dist/frontend');
+if (fs.existsSync(clientBuildPath)) {
   app.use(express.static(clientBuildPath));
-
   // All non‑API routes should return index.html
   app.get('*', (req, res) => {
     res.sendFile(path.join(clientBuildPath, 'index.html'));
   });
 }
+
 
 // Start server
 app.listen(PORT, () => {
