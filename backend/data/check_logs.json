@@ -1,0 +1,245 @@
+[
+  {
+    "id": "12669142-ffe1-489f-90ea-3311f58e2dd1",
+    "user_id": "de4e82d0-c34d-402e-942c-720a68f599e5",
+    "check_type": "phone",
+    "query": "03001234567",
+    "result": "safe",
+    "risk_score": 6,
+    "created_at": "2026-06-12T09:36:41.692Z"
+  },
+  {
+    "id": "2026cc25-8364-446a-a9a8-9898782cc53e",
+    "user_id": "de4e82d0-c34d-402e-942c-720a68f599e5",
+    "check_type": "phone",
+    "query": "03001234567",
+    "result": "safe",
+    "risk_score": 12,
+    "created_at": "2026-06-12T09:37:14.527Z"
+  },
+  {
+    "id": "5a523d4e-fc33-4ee5-b6f8-5b48292f6ba0",
+    "user_id": "de4e82d0-c34d-402e-942c-720a68f599e5",
+    "check_type": "phone",
+    "query": "03001234567",
+    "result": "safe",
+    "risk_score": 8,
+    "created_at": "2026-06-12T09:37:50.069Z"
+  },
+  {
+    "id": "3447be60-8413-4dd7-b468-49ac3aca9dfb",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "121212",
+    "result": "danger",
+    "risk_score": 95,
+    "created_at": "2026-06-12T09:50:12.739Z"
+  },
+  {
+    "id": "1a71c6fe-aaf4-4d4b-b142-c9d71a35972d",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "warning",
+    "risk_score": 50,
+    "created_at": "2026-06-12T09:50:21.310Z"
+  },
+  {
+    "id": "04ba4b7b-dae0-4fdc-a2dc-a3ddb8e8fbf6",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "warning",
+    "risk_score": 50,
+    "created_at": "2026-06-12T09:51:14.163Z"
+  },
+  {
+    "id": "913cb3b1-1b72-4a02-adcf-9405e202633e",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "9898",
+    "result": "safe",
+    "risk_score": 3,
+    "created_at": "2026-06-12T09:51:21.555Z"
+  },
+  {
+    "id": "cfadd33c-a78f-4aba-98cd-db0449c11b65",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "121212",
+    "result": "danger",
+    "risk_score": 95,
+    "created_at": "2026-06-12T09:51:25.522Z"
+  },
+  {
+    "id": "fd098293-17e5-4088-b62b-f64e23b1b5ad",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "warning",
+    "risk_score": 50,
+    "created_at": "2026-06-12T09:51:42.872Z"
+  },
+  {
+    "id": "dfb88704-0a5d-4839-9974-6c3ffda2be00",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "909090",
+    "result": "safe",
+    "risk_score": 14,
+    "created_at": "2026-06-12T09:51:50.147Z"
+  },
+  {
+    "id": "0e85646b-1702-4dca-b20e-5fab5336212c",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "safe",
+    "risk_score": 4,
+    "created_at": "2026-06-12T09:55:33.833Z"
+  },
+  {
+    "id": "657e1ad0-5d16-4c08-81e2-908a682b1fec",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "121212",
+    "result": "danger",
+    "risk_score": 95,
+    "created_at": "2026-06-12T09:55:42.030Z"
+  },
+  {
+    "id": "e8fd3c0d-51fb-47e1-9dc9-646a6f494197",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "safe",
+    "risk_score": 2,
+    "created_at": "2026-06-12T09:55:50.298Z"
+  },
+  {
+    "id": "0143427f-45f1-4cf7-938a-478bd721e68b",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "danger",
+    "risk_score": 90,
+    "created_at": "2026-06-12T09:56:28.321Z"
+  },
+  {
+    "id": "202f08f2-edfa-4a36-b795-05d5044a3b2e",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "129129",
+    "result": "safe",
+    "risk_score": 2,
+    "created_at": "2026-06-12T10:29:49.007Z"
+  },
+  {
+    "id": "e46c0152-c251-4299-9cb9-70552f88571f",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "129129",
+    "result": "danger",
+    "risk_score": 90,
+    "created_at": "2026-06-12T10:31:29.520Z"
+  },
+  {
+    "id": "e32d2b3a-3db9-4cb7-8394-fab144081fbd",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "safe",
+    "risk_score": 12,
+    "created_at": "2026-06-12T10:31:34.146Z"
+  },
+  {
+    "id": "cf672478-e0b3-4147-829e-74baa8f769a3",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "23423",
+    "result": "safe",
+    "risk_score": 3,
+    "created_at": "2026-06-12T10:32:10.931Z"
+  },
+  {
+    "id": "517f4e1c-b78f-439a-8ffd-1f73229fb900",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "2342323",
+    "result": "safe",
+    "risk_score": 10,
+    "created_at": "2026-06-12T10:32:12.700Z"
+  },
+  {
+    "id": "d6f823f9-4139-4260-8293-1df9f546d6d9",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "2342323234",
+    "result": "safe",
+    "risk_score": 7,
+    "created_at": "2026-06-12T10:32:13.774Z"
+  },
+  {
+    "id": "3f9e9b12-6e10-4260-9861-0a9db2302e8c",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "2342323234234",
+    "result": "safe",
+    "risk_score": 14,
+    "created_at": "2026-06-12T10:32:14.712Z"
+  },
+  {
+    "id": "f761052e-e8f5-4684-ba43-4eb46cc3cd9b",
+    "user_id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "check_type": "phone",
+    "query": "2342323234234234",
+    "result": "safe",
+    "risk_score": 5,
+    "created_at": "2026-06-12T10:32:15.497Z"
+  },
+  {
+    "id": "d880f650-6e37-4079-ad49-87117c332bd8",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "121212",
+    "result": "danger",
+    "risk_score": 95,
+    "created_at": "2026-06-12T10:32:36.135Z"
+  },
+  {
+    "id": "cb4ffcc5-bffc-4937-83b9-875e4d1f40e0",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "safe",
+    "risk_score": 6,
+    "created_at": "2026-06-12T10:32:40.203Z"
+  },
+  {
+    "id": "837da583-37e1-4108-bb10-57f5c114db9a",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "129129",
+    "result": "danger",
+    "risk_score": 90,
+    "created_at": "2026-06-12T10:32:44.776Z"
+  },
+  {
+    "id": "8011892b-4f2c-4b9e-959a-259329a64eba",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "1291292",
+    "result": "safe",
+    "risk_score": 6,
+    "created_at": "2026-06-12T10:32:46.470Z"
+  },
+  {
+    "id": "8fe26872-a624-45cf-8613-d9ff5115cdb4",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "1291294",
+    "result": "safe",
+    "risk_score": 8,
+    "created_at": "2026-06-12T10:32:49.216Z"
+  }
+]

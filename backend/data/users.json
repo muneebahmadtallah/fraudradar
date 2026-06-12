@@ -1,0 +1,61 @@
+[
+  {
+    "id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "name": "Demo User",
+    "email": "demo@fraudradar.pk",
+    "password": "$2a$10$h7NTsHZD0WJY/3/YTzKawuDU05Q43ZjUw9V8PDq4IlkidHTUTAkPC",
+    "plan": "plus",
+    "created_at": "2026-06-08T09:33:31.783Z",
+    "updated_at": "2026-06-08T09:33:31.783Z"
+  },
+  {
+    "id": "efff7259-6d55-4927-b9d5-649772012e4a",
+    "name": "System Admin",
+    "email": "admin@fraudradar.pk",
+    "password": "$2a$10$StbT6CFtbKpB3R8Z/q5o1uUlsaNg/DRvV1QmIvfmvGKN26R4ePzGu",
+    "plan": "business",
+    "role": "admin",
+    "created_at": "2026-06-08T09:43:28.493Z",
+    "updated_at": "2026-06-08T09:43:28.493Z"
+  },
+  {
+    "id": "940522eb-4983-4822-9a3c-601b80054026",
+    "name": "muneeb",
+    "email": "muneeb@red.com",
+    "password": "$2a$12$juUkxMth5huEXX4oIsChdecCgwyqtuDuSmTrdp3vCDMAgc.DF1jXG",
+    "plan": "free",
+    "role": "user",
+    "created_at": "2026-06-08T12:02:15.749Z",
+    "updated_at": "2026-06-08T12:02:15.749Z"
+  },
+  {
+    "id": "a1b4fcc6-385b-4b0d-b8c5-b2d1b4838a94",
+    "name": "abeer",
+    "email": "abeer@gmail.com",
+    "password": "$2a$12$y8Hfnp2GPQ9mQT2i7ajjzuB7tq7hORXnfZwGI.mW/A.tZYAa2KmIG",
+    "plan": "free",
+    "role": "user",
+    "created_at": "2026-06-09T17:57:13.161Z",
+    "updated_at": "2026-06-09T17:57:13.161Z"
+  },
+  {
+    "id": "de4e82d0-c34d-402e-942c-720a68f599e5",
+    "name": "Test User",
+    "email": "testuser@example.com",
+    "password": "$2a$12$DOkTUK.UwQrzRMk7fuULl.24YO62Zd4A3xXVbXgWXA7cxuvpTeWuK",
+    "plan": "free",
+    "role": "user",
+    "created_at": "2026-06-12T09:35:51.833Z",
+    "updated_at": "2026-06-12T09:35:51.833Z"
+  },
+  {
+    "id": "b8b92af2-24a5-41a5-8e7c-da72fe0b033b",
+    "name": "talha",
+    "email": "talha@gmail.com",
+    "password": "$2a$12$LT8sRN2HbWf41mf83/W9lua1xwg8mBbp9ZUMLI9F8MsZb7zO1GK7i",
+    "plan": "free",
+    "role": "user",
+    "created_at": "2026-06-12T10:50:55.488Z",
+    "updated_at": "2026-06-12T10:50:55.488Z"
+  }
+]

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "5c216a9a-9009-4717-8e41-2bf9b0f03efa",
+    "user_id": "940522eb-4983-4822-9a3c-601b80054026",
+    "type": "phone",
+    "identifier": "121212",
+    "description": "test",
+    "risk_score": 95,
+    "status": "confirmed",
+    "upvotes": 0,
+    "report_count": 1,
+    "verified": 1,
+    "created_at": "2026-06-09T07:14:51.581Z"
+  },
+  {
+    "id": "d9325006-ab1a-4eaf-aef2-b73c2fccaf62",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "type": "phone",
+    "identifier": "129129",
+    "description": "thsi is testing\n",
+    "risk_score": 90,
+    "status": "confirmed",
+    "upvotes": 0,
+    "report_count": 1,
+    "verified": 1,
+    "created_at": "2026-06-12T10:30:03.744Z"
+  }
+]

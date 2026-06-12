@@ -1,0 +1,101 @@
+<div class="landing-hero">
+  <div class="hero-glow"></div>
+  <div class="container hero-content">
+    <div class="floating-shield shield-icon-container">
+      <span class="material-symbols-outlined shield-icon">security</span>
+    </div>
+
+    <h1 class="hero-title">Fraudradar</h1>
+    <p class="hero-subtitle">
+      Join thousands of Pakistanis who trust fraudradar for daily digital protection.
+      Instantly check numbers, links, and text messages for scam activities.
+    </p>
+
+    <div class="hero-actions">
+      <a routerLink="/dashboard" class="btn btn-primary">
+        <span class="material-symbols-outlined">shield</span> Check a Scam
+      </a>
+      <a routerLink="/pricing" class="btn btn-secondary">
+        <span class="material-symbols-outlined">workspace_premium</span> View Shield Plans
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Grid -->
+<div class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="glass-card stat-card">
+        <span class="material-symbols-outlined stat-icon icon-green">verified_user</span>
+        <div class="stat-number">{{ stats.total_protected | number }}</div>
+        <div class="stat-label">Active Protected Users</div>
+      </div>
+
+      <div class="glass-card stat-card">
+        <span class="material-symbols-outlined stat-icon icon-blue">block</span>
+        <div class="stat-number">{{ stats.scams_blocked | number }}</div>
+        <div class="stat-label">Scam Threats Blocked</div>
+      </div>
+
+      <div class="glass-card stat-card">
+        <span class="material-symbols-outlined stat-icon icon-amber">warning</span>
+        <div class="stat-number">{{ stats.reports_today }}</div>
+        <div class="stat-label">Scam Reports Today</div>
+      </div>
+
+      <div class="glass-card stat-card">
+        <span class="material-symbols-outlined stat-icon icon-purple">query_stats</span>
+        <div class="stat-number">{{ stats.accuracy_rate }}%</div>
+        <div class="stat-label">Detection Accuracy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div class="features-section">
+  <div class="container">
+    <h2 class="section-title">Complete Digital Protection</h2>
+    <p class="section-subtitle">Real-time scam scanner powered by community-verified reports.</p>
+
+    <div class="features-grid">
+      <div class="glass-card feature-card">
+        <span class="material-symbols-outlined feature-icon">phone_in_talk</span>
+        <h3>Phone Checker</h3>
+        <p>Verify phone numbers against our extensive scam database before answering calls or sending money.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <span class="material-symbols-outlined feature-icon">link</span>
+        <h3>Link reputability</h3>
+        <p>Check any social media username, web link or Easypaisa/JazzCash mock portals for malicious content.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <span class="material-symbols-outlined feature-icon">psychology</span>
+        <h3>AI SMS Analyzer</h3>
+        <p>Paste suspicious text messages to automatically detect common lottery, job, or bank phishing patterns.</p>
+      </div>
+
+      <div class="glass-card feature-card">
+        <span class="material-symbols-outlined feature-icon">forum</span>
+        <h3>Community Feed</h3>
+        <p>Stay informed about newly reported and verified scams reported directly by the community.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Call to Action -->
+<div class="cta-section">
+  <div class="container">
+    <div class="glass-card cta-card">
+      <h2>Stay Shielded on WhatsApp</h2>
+      <p>Subscribe to receive instant real-time alerts whenever a new trending scam is reported in Pakistan.</p>
+      <a routerLink="/whatsapp-alerts" class="btn btn-primary">
+        <span class="material-symbols-outlined">chat</span> Setup WhatsApp Alerts
+      </a>
+    </div>
+  </div>
+</div>

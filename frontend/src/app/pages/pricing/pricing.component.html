@@ -1,0 +1,314 @@
+<div class="pricing-container container">
+
+  <!-- Page Header -->
+  <div class="pricing-header">
+    <a routerLink="/" class="back-link">
+      <span class="material-symbols-outlined">arrow_back</span> Back to Dashboard
+    </a>
+    <div class="header-badge">
+      <span class="material-symbols-outlined">shield</span> Upgrade Protection
+    </div>
+
+    <h1 class="page-title">Choose Your Shield</h1>
+    <p class="page-subtitle">
+      Join 10,000+ Pakistanis who trust fraudradar for daily digital protection. No hidden charges. Cancel anytime.
+    </p>
+
+    <!-- Period Toggle -->
+    <div class="toggle-container">
+      <button class="toggle-btn" [class.active]="billingPeriod === 'monthly'" (click)="toggleBilling('monthly')">
+        Monthly
+      </button>
+      <button class="toggle-btn" [class.active]="billingPeriod === 'lifetime'" (click)="toggleBilling('lifetime')">
+        Lifetime
+        <span class="save-badge">SAVE 60%</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Pricing Cards Grid -->
+  <div class="pricing-grid">
+
+    <!-- Free Card -->
+    <div class="glass-card plan-card">
+      <div class="card-icon-wrapper bg-soft-white">
+        <span class="material-symbols-outlined">shield_moon</span>
+      </div>
+      <h3 class="plan-name">Free</h3>
+      <p class="plan-desc">Basic protection for individuals</p>
+
+      <div class="price-box">
+        <span class="currency">Rs.</span>
+        <span class="amount">0</span>
+        <span class="period">/mo</span>
+      </div>
+
+      <ul class="features-list">
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check">check</span>
+          3 checks per day
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check">check</span>
+          Report scams
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check">check</span>
+          Community feed
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check">check</span>
+          Basic safety tips
+        </li>
+        <li class="crossed">
+          <span class="material-symbols-outlined icon-cross">close</span>
+          Unlimited checks
+        </li>
+        <li class="crossed">
+          <span class="material-symbols-outlined icon-cross">close</span>
+          Real-time WhatsApp alerts
+        </li>
+        <li class="crossed">
+          <span class="material-symbols-outlined icon-cross">close</span>
+          Safe buyer badge
+        </li>
+        <li class="crossed">
+          <span class="material-symbols-outlined icon-cross">close</span>
+          API access
+        </li>
+      </ul>
+
+      <button class="btn btn-secondary card-btn">Current Plan</button>
+    </div>
+
+    <!-- Shield Plus (Featured) Card -->
+    <div class="glass-card plan-card featured-glow">
+      <div class="popular-ribbon">MOST POPULAR</div>
+      <div class="card-icon-wrapper bg-green">
+        <span class="material-symbols-outlined text-green">star</span>
+      </div>
+      <h3 class="plan-name">Shield Plus</h3>
+      <p class="plan-desc">The most popular choice for personal safety</p>
+
+      <div class="price-box">
+        <span class="currency">Rs.</span>
+        <span class="amount">{{ billingPeriod === 'monthly' ? '199' : '1,499' }}</span>
+        <span class="period">/{{ billingPeriod === 'monthly' ? 'mo' : 'one-time' }}</span>
+      </div>
+
+      <ul class="features-list">
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-green">check</span>
+          Unlimited checks
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-green">check</span>
+          Real-time WhatsApp alerts
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-green">check</span>
+          Full scam history & details
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-green">check</span>
+          Priority report review
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-green">check</span>
+          Safe buyer badge
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-green">check</span>
+          Ad-free experience
+        </li>
+      </ul>
+
+      <button class="btn btn-primary card-btn" (click)="selectPlan('plus')">Get Shield Plus</button>
+    </div>
+
+    <!-- Shield Business Card -->
+    <div class="glass-card plan-card">
+      <div class="card-icon-wrapper bg-soft-blue">
+        <span class="material-symbols-outlined text-blue">business_center</span>
+      </div>
+      <h3 class="plan-name">Shield Business</h3>
+      <p class="plan-desc">Advanced protection for your business & team</p>
+
+      <div class="price-box">
+        <span class="currency">Rs.</span>
+        <span class="amount">{{ billingPeriod === 'monthly' ? '999' : '7,999' }}</span>
+        <span class="period">/{{ billingPeriod === 'monthly' ? 'mo' : 'one-time' }}</span>
+      </div>
+
+      <ul class="features-list">
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-blue">check</span>
+          Everything in Shield Plus
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-blue">check</span>
+          Bulk check (up to 50 numbers)
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-blue">check</span>
+          Verified business badge
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-blue">check</span>
+          API access (1000 calls/mo)
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-blue">check</span>
+          Monthly scam trend report
+        </li>
+        <li class="checked">
+          <span class="material-symbols-outlined icon-check text-blue">check</span>
+          Team access (3 accounts)
+        </li>
+      </ul>
+
+      <button class="btn btn-blue card-btn" (click)="selectPlan('business')">Get Business Plan</button>
+    </div>
+  </div>
+
+  <!-- Bottom Features Highlights -->
+  <div class="glass-card bottom-banner">
+    <div class="banner-grid">
+      <div class="banner-item">
+        <span class="material-symbols-outlined icon-green">groups</span>
+        <div>
+          <h4>10,000+ Protected</h4>
+          <p>Join the largest network of scam protection in Pakistan.</p>
+        </div>
+      </div>
+      <div class="banner-item">
+        <span class="material-symbols-outlined icon-blue">bolt</span>
+        <div>
+          <h4>Real-time Alerts</h4>
+          <p>Get notified instantly on WhatsApp when a new scam emerges.</p>
+        </div>
+      </div>
+      <div class="banner-item">
+        <span class="material-symbols-outlined icon-amber">verified</span>
+        <div>
+          <h4>Verified Shield</h4>
+          <p>Build trust with a verification badge for your profile.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs Section -->
+  <div class="faq-section">
+    <h2 class="faq-title">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="glass-card faq-item" *ngFor="let faq of faqs; let i = index" (click)="toggleFaq(i)">
+        <div class="faq-question">
+          <span>{{ faq.question }}</span>
+          <span class="material-symbols-outlined chevron" [class.open]="faq.open">expand_more</span>
+        </div>
+        <div class="faq-answer" [class.open]="faq.open">
+          <p>{{ faq.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Proof Modal -->
+  <div class="modal-overlay" *ngIf="selectedPlan">
+    <div class="glass-card modal-card">
+      <div class="modal-header">
+        <h2>Submit Payment Proof</h2>
+        <button class="close-btn" (click)="closeForm()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <p class="plan-info">
+          Upgrading to <strong>Shield {{ selectedPlan === 'plus' ? 'Plus' : 'Business' }}</strong>. 
+          Please send <strong>Rs. {{ getAmount() | number }}</strong> via EasyPaisa or JazzCash.
+        </p>
+
+        <!-- Payment Details box -->
+        <div class="payment-details-box">
+          <div class="payment-account easypaisa-acc">
+            <span class="acc-logo">EasyPaisa</span>
+            <div class="acc-info">
+              <span class="acc-num">0300-1234567</span>
+              <span class="acc-title">Title: FraudRadar Admin</span>
+            </div>
+          </div>
+          <div class="payment-account jazzcash-acc">
+            <span class="acc-logo">JazzCash</span>
+            <div class="acc-info">
+              <span class="acc-num">0310-1234567</span>
+              <span class="acc-title">Title: FraudRadar Admin</span>
+            </div>
+          </div>
+        </div>
+
+        <form (ngSubmit)="submitProof()">
+          <!-- Status Banners -->
+          <div class="status-banner success" *ngIf="submissionSuccess">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>{{ submissionSuccess }}</span>
+          </div>
+          <div class="status-banner error" *ngIf="submissionError">
+            <span class="material-symbols-outlined">error</span>
+            <span>{{ submissionError }}</span>
+          </div>
+
+          <div class="form-group">
+            <label>Select Payment Method</label>
+            <div class="method-selector">
+              <label class="radio-label">
+                <input type="radio" name="pay-method" [(ngModel)]="paymentMethod" value="easypaisa">
+                <span class="radio-text">EasyPaisa</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="pay-method" [(ngModel)]="paymentMethod" value="jazzcash">
+                <span class="radio-text">JazzCash</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="tid">Transaction ID (TID)</label>
+            <input 
+              type="text" 
+              id="tid" 
+              name="transactionId"
+              [(ngModel)]="transactionId" 
+              placeholder="Enter the 12-digit transaction ID" 
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Upload Payment Receipt / Screenshot</label>
+            <div class="file-drop-area">
+              <span class="material-symbols-outlined upload-icon">upload_file</span>
+              <span class="file-text">Click to choose image or drag & drop</span>
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" required>
+            </div>
+            
+            <!-- Preview image -->
+            <div class="screenshot-preview" *ngIf="screenshotBase64">
+              <img [src]="screenshotBase64" alt="Screenshot Preview">
+            </div>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="isSubmittingProof">
+              <span *ngIf="isSubmittingProof" class="spinner"></span>
+              <span *ngIf="!isSubmittingProof">Submit Verification</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

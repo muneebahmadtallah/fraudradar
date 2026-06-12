@@ -1,0 +1,67 @@
+<div class="auth-container">
+  <div class="glass-card auth-card">
+    <div class="auth-header">
+      <span class="material-symbols-outlined logo-icon">security</span>
+      <h2>Create Account</h2>
+      <p>Secure your profile and join the scam detection community.</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div *ngIf="errorMsg" class="error-banner">
+        <span class="material-symbols-outlined">error</span>
+        <span>{{ errorMsg }}</span>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">person</span>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            placeholder="e.g. Muneeb Ahmad"
+            [(ngModel)]="userData.name" 
+            required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">mail</span>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="e.g. name@domain.com"
+            [(ngModel)]="userData.email" 
+            required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">lock</span>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            placeholder="Min. 6 characters"
+            [(ngModel)]="userData.password" 
+            required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary auth-submit-btn" [disabled]="isLoading">
+        <span *ngIf="isLoading" class="spinner"></span>
+        <span *ngIf="!isLoading">Register</span>
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a routerLink="/auth/login">Login here</a>
+    </div>
+  </div>
+</div>

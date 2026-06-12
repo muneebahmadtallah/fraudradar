@@ -1,0 +1,92 @@
+<!-- Global Layout Header -->
+<header class="navbar-header">
+  <div class="container nav-container">
+    <a routerLink="/" class="nav-brand">
+      <span class="material-symbols-outlined logo-icon">security</span>
+      <div class="brand-text">
+        <span class="brand-name">Fraudradar</span>
+        <span class="brand-sub">Pakistan</span>
+      </div>
+    </a>
+
+    <!-- Desktop Menu -->
+    <nav class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a routerLink="/dashboard" routerLinkActive="active">Scanner</a>
+      <a routerLink="/whatsapp-alerts" routerLinkActive="active">WhatsApp Alerts</a>
+      <a routerLink="/pricing" routerLinkActive="active">Pricing</a>
+      <a *ngIf="currentUser && currentUser.role === 'admin'" routerLink="/admin" routerLinkActive="active">Admin Manager</a>
+      <a *ngIf="currentUser && currentUser.role === 'admin'" routerLink="/admin/payments" routerLinkActive="active">Verify Payments</a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="nav-actions">
+      <!-- Plan badge if logged in -->
+      <span *ngIf="currentUser" class="plan-badge" [attr.data-plan]="currentUser.plan">
+        {{ currentUser.plan | titlecase }} Protection
+      </span>
+
+      <!-- Auth section -->
+      <div *ngIf="!currentUser" class="auth-buttons">
+        <a routerLink="/auth/login" class="btn btn-secondary nav-btn">Login</a>
+        <a routerLink="/auth/register" class="btn btn-primary nav-btn">Register</a>
+      </div>
+
+      <div *ngIf="currentUser" class="user-profile">
+        <span class="user-name">{{ currentUser.name }}</span>
+        <button (click)="logout()" class="btn btn-secondary nav-btn logout-btn">
+          <span class="material-symbols-outlined">logout</span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="mobile-toggle" (click)="toggleMobileMenu()">
+        <span class="material-symbols-outlined">{{ isMobileMenuOpen ? 'close' : 'menu' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="mobile-menu" *ngIf="isMobileMenuOpen">
+    <nav class="mobile-links">
+      <a routerLink="/" (click)="isMobileMenuOpen = false">Home</a>
+      <a routerLink="/dashboard" (click)="isMobileMenuOpen = false">Scanner</a>
+      <a routerLink="/whatsapp-alerts" (click)="isMobileMenuOpen = false">WhatsApp Alerts</a>
+      <a routerLink="/pricing" (click)="isMobileMenuOpen = false">Pricing</a>
+      <a *ngIf="currentUser && currentUser.role === 'admin'" routerLink="/admin" (click)="isMobileMenuOpen = false">Admin Manager</a>
+      <a *ngIf="currentUser && currentUser.role === 'admin'" routerLink="/admin/payments" (click)="isMobileMenuOpen = false">Verify Payments</a>
+
+      <div class="mobile-auth-divider"></div>
+
+      <div *ngIf="!currentUser" class="mobile-auth-actions">
+        <a routerLink="/auth/login" (click)="isMobileMenuOpen = false" class="btn btn-secondary mobile-btn">Login</a>
+        <a routerLink="/auth/register" (click)="isMobileMenuOpen = false"
+          class="btn btn-primary mobile-btn">Register</a>
+      </div>
+
+      <div *ngIf="currentUser" class="mobile-user-actions">
+        <span class="mobile-username">{{ currentUser.name }} ({{ currentUser.plan | titlecase }})</span>
+        <button (click)="logout()" class="btn btn-secondary mobile-btn">
+          <span class="material-symbols-outlined">logout</span> Logout
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Page Router Outlet -->
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Global Footer -->
+<footer class="global-footer">
+  <div class="container footer-content">
+    <p class="copyright">© 2026 fraudradar. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="javascript:void(0)">Privacy Policy</a>
+      <a href="javascript:void(0)">Terms of Service</a>
+      <a href="javascript:void(0)">Contact Us</a>
+    </div>
+  </div>
+</footer>

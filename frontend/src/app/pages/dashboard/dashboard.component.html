@@ -1,0 +1,294 @@
+<div class="dashboard-wrapper container">
+  <!-- Nav Tabs -->
+  <div class="dashboard-tabs">
+    <button [class.active]="activeTab === 'check'" (click)="setTab('check')" class="tab-btn">
+      <span class="material-symbols-outlined">search</span> Check
+    </button>
+    <button [class.active]="activeTab === 'report'" (click)="setTab('report')" class="tab-btn">
+      <span class="material-symbols-outlined">report</span> Report
+    </button>
+    <!-- <button [class.active]="activeTab === 'recent'" (click)="setTab('recent')" class="tab-btn">
+      <span class="material-symbols-outlined">history</span> Recent
+    </button> -->
+    <button [class.active]="activeTab === 'safe'" (click)="setTab('safe')" class="tab-btn">
+      <span class="material-symbols-outlined">gpp_maybe</span> Stay Safe
+    </button>
+  </div>
+
+  <!-- TAB CONTENT -->
+  <div class="tab-content-area">
+
+    <!-- 1. CHECK SCAM TAB -->
+    <div *ngIf="activeTab === 'check'" class="tab-pane">
+      <div class="check-grid">
+        
+        <!-- Tab 1 Selection Option Cards -->
+        <div class="glass-card option-card" [class.selected]="checkType === 'phone'" (click)="checkType = 'phone'; clearCheck()">
+          <div class="option-header">
+            <span class="material-symbols-outlined option-icon color-green">call</span>
+            <h3>Check a phone number</h3>
+          </div>
+          <p class="option-desc">Scan mobile numbers or landlines reported for financial/identity fraud.</p>
+        </div>
+
+        <div class="glass-card option-card" [class.selected]="checkType === 'link'" (click)="checkType = 'link'; clearCheck()">
+          <div class="option-header">
+            <span class="material-symbols-outlined option-icon color-blue">link</span>
+            <h3>Check a page or link</h3>
+          </div>
+          <p class="option-desc">Scan suspicious websites, Easypaisa/JazzCash phishing links, or social accounts.</p>
+        </div>
+
+        <div class="glass-card option-card" [class.selected]="checkType === 'message'" (click)="checkType = 'message'; clearCheck()">
+          <div class="option-header">
+            <span class="material-symbols-outlined option-icon color-amber">chat_bubble</span>
+            <h3>Analyze a message</h3>
+          </div>
+          <p class="option-desc">Paste SMS text, WhatsApp messages, or job offers to identify scam content.</p>
+        </div>
+      </div>
+
+      <!-- Main Input Field -->
+      <div class="glass-card check-input-card">
+        <div class="input-form">
+          <div class="input-container">
+            <span class="material-symbols-outlined prefix-icon">
+              {{ checkType === 'phone' ? 'call' : checkType === 'link' ? 'link' : 'chat_bubble' }}
+            </span>
+            
+            <input 
+              *ngIf="checkType !== 'message'"
+              type="text" 
+              [(ngModel)]="checkQuery" 
+              placeholder="{{ checkType === 'phone' ? 'e.g. 0300-1234567' : 'e.g. http://jazzcash-verify.fake-pk.com' }}"
+              (keyup.enter)="onCheck()">
+              
+            <textarea 
+              *ngIf="checkType === 'message'"
+              [(ngModel)]="checkQuery" 
+              placeholder="Paste the suspicious message content here to analyze with AI patterns..."
+              rows="3"></textarea>
+          </div>
+          
+          <button class="btn" [class.btn-primary]="checkType === 'phone'" [class.btn-blue]="checkType === 'link'" [class.btn-amber]="checkType === 'message'" (click)="onCheck()" [disabled]="isChecking">
+            <span *ngIf="isChecking" class="spinner"></span>
+            <span *ngIf="!isChecking">
+              {{ checkType === 'message' ? 'Analyze with AI' : 'Check' }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Card -->
+      <div *ngIf="checkResult" class="glass-card result-card" [ngClass]="getVerdictClass(checkResult.verdict)">
+        <div class="result-header">
+          <div class="gauge-wrapper">
+            <div class="gauge-track"></div>
+            <div class="gauge-fill" [style.transform]="'rotate(' + (checkResult.risk_score * 1.8) + 'deg)'"></div>
+            <div class="gauge-score">
+              <span class="score-num">{{ checkResult.risk_score }}%</span>
+              <span class="score-lbl">Risk Score</span>
+            </div>
+          </div>
+          
+          <div class="result-details">
+            <h2 class="verdict-title">{{ getVerdictLabel(checkResult.verdict) }}</h2>
+            <p class="verdict-desc" *ngIf="checkResult.found">
+              This details match records in our verified blacklists with multiple reports. Do not trust or engage.
+            </p>
+            <p class="verdict-desc" *ngIf="!checkResult.found">
+              This input has not been flagged in our community database. However, always remain cautious.
+            </p>
+
+            <div class="tags-container" *ngIf="checkResult.labels.length > 0">
+              <span class="tag-badge" *ngFor="let label of checkResult.labels">
+                {{ label }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matching Reports Info -->
+        <div class="result-reports" *ngIf="checkResult.reports && checkResult.reports.length > 0">
+          <h4>Community Activity Reports</h4>
+          <div class="report-records-list">
+            <div class="record-item" *ngFor="let record of checkResult.reports">
+              <div class="record-meta">
+                <span class="record-date">{{ record.created_at | date:'mediumDate' }}</span>
+                <span class="record-badge" [class.verified]="record.verified">
+                  {{ record.verified ? 'Verified Scam' : 'Reported' }}
+                </span>
+              </div>
+              <p class="record-desc">{{ record.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. REPORT SCAM TAB -->
+    <div *ngIf="activeTab === 'report'" class="tab-pane">
+      <div class="glass-card report-form-card">
+        <div class="form-header">
+          <h2>Report a Scam</h2>
+          <p>Help protect the community by reporting fraudulent numbers, links, or accounts.</p>
+        </div>
+
+        <form (ngSubmit)="onReport()">
+          <div *ngIf="reportStatus" class="status-banner" [class.success]="reportStatus.success" [class.error]="!reportStatus.success">
+            <span class="material-symbols-outlined">
+              {{ reportStatus.success ? 'check_circle' : 'error' }}
+            </span>
+            <span>{{ reportStatus.message }}</span>
+          </div>
+
+          <!-- Type Select Buttons -->
+          <div class="form-group">
+            <label>Type of Scam</label>
+            <div class="type-selectors">
+              <button type="button" class="type-btn" [class.active]="reportType === 'phone'" (click)="reportType = 'phone'">Phone Call</button>
+              <button type="button" class="type-btn" [class.active]="reportType === 'sms'" (click)="reportType = 'sms'">SMS</button>
+              <button type="button" class="type-btn" [class.active]="reportType === 'whatsapp'" (click)="reportType = 'whatsapp'">WhatsApp</button>
+              <button type="button" class="type-btn" [class.active]="reportType === 'social_media'" (click)="reportType = 'social_media'">Social Media</button>
+              <button type="button" class="type-btn" [class.active]="reportType === 'link'" (click)="reportType = 'link'">Website / Link</button>
+              <button type="button" class="type-btn" [class.active]="reportType === 'email'" (click)="reportType = 'email'">Email</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rep-identifier">Number / Link / Username</label>
+            <div class="input-container">
+              <span class="material-symbols-outlined prefix-icon">alternate_email</span>
+              <input 
+                type="text" 
+                id="rep-identifier" 
+                [(ngModel)]="reportIdentifier" 
+                name="identifier" 
+                placeholder="Paste the phone number, link, or username here" 
+                required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rep-desc">Description</label>
+            <div class="input-container textarea-container">
+              <span class="material-symbols-outlined prefix-icon">edit_note</span>
+              <textarea 
+                id="rep-desc" 
+                [(ngModel)]="reportDescription" 
+                name="description" 
+                placeholder="Tell us what happened (e.g. Asked for JazzCash transfer, sent fake OTP SMS)" 
+                rows="4"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-report-btn" [disabled]="isReporting">
+            <span *ngIf="isReporting" class="spinner"></span>
+            <span *ngIf="!isReporting">Submit Report</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 3. RECENT SCAMS TAB -->
+    <!-- <div *ngIf="activeTab === 'recent'" class="tab-pane">
+      <div class="recent-header-row">
+        <h2>Recent Community Reports</h2>
+        <div class="filter-pills">
+          <button class="pill" [class.active]="recentTypeFilter === ''" (click)="filterRecentByType('')">All</button>
+          <button class="pill" [class.active]="recentTypeFilter === 'phone'" (click)="filterRecentByType('phone')">Phones</button>
+          <button class="pill" [class.active]="recentTypeFilter === 'link'" (click)="filterRecentByType('link')">Links</button>
+          <button class="pill" [class.active]="recentTypeFilter === 'whatsapp'" (click)="filterRecentByType('whatsapp')">WhatsApp</button>
+          <button class="pill" [class.active]="recentTypeFilter === 'sms'" (click)="filterRecentByType('sms')">SMS</button>
+        </div>
+      </div>
+
+      <div *ngIf="recentLoading" class="loading-state">
+        <span class="spinner"></span>
+        <p>Loading recent community reports...</p>
+      </div>
+
+      <div *ngIf="!recentLoading && recentScams.length === 0" class="empty-state glass-card">
+        <span class="material-symbols-outlined">folder_open</span>
+        <p>No recent scams matching this filter.</p>
+      </div>
+
+      <div class="recent-scams-list" *ngIf="!recentLoading && recentScams.length > 0">
+        <div class="glass-card scam-feed-card" *ngFor="let scam of recentScams">
+          <div class="feed-card-header">
+            <div class="type-badge" [attr.data-type]="scam.type">
+              <span class="material-symbols-outlined">
+                {{ scam.type === 'phone' ? 'call' : scam.type === 'link' ? 'link' : 'chat_bubble' }}
+              </span>
+              {{ scam.type | uppercase }}
+            </div>
+            
+            <div class="score-badge" [class.bad]="scam.risk_score >= 80" [class.med]="scam.risk_score >= 40 && scam.risk_score < 80">
+              Risk: {{ scam.risk_score }}%
+            </div>
+          </div>
+
+          <h3 class="feed-identifier">{{ scam.identifier }}</h3>
+          <p class="feed-desc">{{ scam.description || 'No description provided.' }}</p>
+
+          <div class="feed-card-footer">
+            <span class="feed-date">{{ scam.created_at | date:'mediumDate' }}</span>
+            <div class="footer-actions">
+              <button class="upvote-btn" (click)="upvoteScam(scam.id)">
+                <span class="material-symbols-outlined">thumb_up</span>
+                {{ scam.upvotes }} Helpful
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- 4. STAY SAFE TIPS TAB -->
+    <div *ngIf="activeTab === 'safe'" class="tab-pane">
+      <div class="safe-tips-container">
+        
+        <div class="glass-card tip-card">
+          <div class="tip-header">
+            <span class="material-symbols-outlined tip-icon icon-green">lock</span>
+            <h3>Never Share OTP or PINs</h3>
+          </div>
+          <p>
+            No legitimate bank, Easypaisa, or JazzCash employee will ever ask for your 4-digit PIN, OTP (One-Time Password) or log-in passcode. Keep these confidential under all circumstances.
+          </p>
+        </div>
+
+        <div class="glass-card tip-card">
+          <div class="tip-header">
+            <span class="material-symbols-outlined tip-icon icon-blue">language</span>
+            <h3>Inspect URLs Carefully</h3>
+          </div>
+          <p>
+            Phishing links mimic official names but have domain errors (e.g. <code>jazzcash.fake-verify.com</code> instead of <code>jazzcash.com.pk</code>). Always inspect the domain prefix on your browser.
+          </p>
+        </div>
+
+        <div class="glass-card tip-card">
+          <div class="tip-header">
+            <span class="material-symbols-outlined tip-icon icon-amber">volunteer_activism</span>
+            <h3>Double Check Cash Prize Offers</h3>
+          </div>
+          <p>
+            Lottery awards claiming you won thousands (e.g. from BISP or TV Shows) are scam tactics. They will request money first for "registration fee". Legitimate programs never ask for registration fees to cash rewards.
+          </p>
+        </div>
+
+        <div class="glass-card tip-card">
+          <div class="tip-header">
+            <span class="material-symbols-outlined tip-icon icon-purple">gavel</span>
+            <h3>Official Support Contact Details</h3>
+          </div>
+          <p>
+            If you fall victim to cyber-fraud, report the event immediately to <strong>FIA Cyber Crime Wing</strong> (Helpline: <code>1991</code>) or drop an official complaint at <strong>PTA</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

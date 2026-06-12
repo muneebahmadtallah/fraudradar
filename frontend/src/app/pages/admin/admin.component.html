@@ -1,0 +1,223 @@
+<div class="admin-wrapper container">
+
+  <!-- Admin Header -->
+  <div class="admin-header">
+    <div class="header-title-row">
+      <span class="material-symbols-outlined header-icon">shield_person</span>
+      <div>
+        <h1>System Administration</h1>
+        <p>Manage community scam reports, verify incident queue, and trace alert subscribers.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Sub Tabs -->
+  <div class="admin-tabs">
+    <button [class.active]="activeTab === 'scam-manager'" (click)="setTab('scam-manager')" class="tab-btn">
+      <span class="material-symbols-outlined">add_moderator</span> Scam Manager
+    </button>
+    <button [class.active]="activeTab === 'reports-queue'" (click)="setTab('reports-queue')" class="tab-btn">
+      <span class="material-symbols-outlined">pending_actions</span>
+      Review Queue
+      <span class="tab-count amber" *ngIf="pendingCount > 0">{{ pendingCount }}</span>
+    </button>
+    <button [class.active]="activeTab === 'subscribers'" (click)="setTab('subscribers')" class="tab-btn">
+      <span class="material-symbols-outlined">contact_phone</span> WhatsApp Alerts
+      <span class="tab-count blue" *ngIf="subscribers.length > 0">{{ subscribers.length }}</span>
+    </button>
+  </div>
+
+  <div class="admin-content-area">
+
+    <!-- 1. SCAM MANAGER (MANUAL ADD) -->
+    <div *ngIf="activeTab === 'scam-manager'" class="tab-pane">
+      <div class="glass-card add-scam-form">
+        <h2 class="pane-subtitle">Manually Flag a Scam</h2>
+        <p class="pane-desc">Instantly inject verified scam numbers, phishing links, or warning patterns directly into
+          the active detection database as confirmed entries.</p>
+
+        <form (ngSubmit)="onAddScam()">
+
+          <div *ngIf="formSuccess" class="status-banner success">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>{{ formSuccess }}</span>
+          </div>
+
+          <div *ngIf="formError" class="status-banner error">
+            <span class="material-symbols-outlined">error</span>
+            <span>{{ formError }}</span>
+          </div>
+
+          <!-- Type Select -->
+          <div class="form-group">
+            <label>Scam Category</label>
+            <select name="type" [(ngModel)]="scamForm.type" class="admin-select">
+              <option value="phone">Phone Number</option>
+              <option value="sms">SMS Number</option>
+              <option value="whatsapp">WhatsApp Number</option>
+              <option value="link">Website Link (URL)</option>
+              <option value="social_media">Social Media Username</option>
+              <option value="email">Email Address</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="scam-identity">Identifier (Number, Link, Username)</label>
+            <div class="input-wrapper">
+              <span class="material-symbols-outlined input-icon">badge</span>
+              <input type="text" id="scam-identity" name="identifier" [(ngModel)]="scamForm.identifier"
+                placeholder="e.g. 0300-9999999 or http://verification-portal.net" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="scam-desc">Scam Description / Context</label>
+            <textarea id="scam-desc" name="description" [(ngModel)]="scamForm.description"
+              placeholder="e.g. Fake prize lottery scam demanding JazzCash registration payment." rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="scam-risk">Initial Risk Score Index (0-100)</label>
+            <div class="risk-range-wrapper">
+              <input type="range" id="scam-risk" name="risk_score" min="0" max="100" [(ngModel)]="scamForm.risk_score">
+              <span class="risk-value">{{ scamForm.risk_score }}%</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary submit-btn" [disabled]="formSubmitting">
+            <span *ngIf="formSubmitting" class="spinner"></span>
+            <span *ngIf="!formSubmitting">
+              <span class="material-symbols-outlined">verified_user</span> Inject &amp; Verify Scam
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 2. COMMUNITY REPORTS REVIEW QUEUE -->
+    <div *ngIf="activeTab === 'reports-queue'" class="tab-pane">
+      <div class="queue-header">
+        <div class="queue-title-row">
+          <div>
+            <h2 class="pane-subtitle">Community Incident Queue</h2>
+            <p class="pane-desc">Review scam incidents submitted by users. Approve to mark as "Verified" and include in
+              scan results, or reject to remove from the database.</p>
+          </div>
+          <button class="btn btn-secondary reload-queue-btn" (click)="loadReports()" [disabled]="isLoading">
+            <span class="material-symbols-outlined">refresh</span> Refresh
+          </button>
+        </div>
+
+        <!-- Filter Pills -->
+        <div class="filter-bar">
+          <button class="filter-btn active" [class.active]="queueFilter === 'all'" (click)="setQueueFilter('all')">All
+            <span class="badge">({{ reports.length }})</span></button>
+          <button class="filter-btn amber" [class.active]="queueFilter === 'pending'"
+            (click)="setQueueFilter('pending')">Pending <span class="badge">({{ pendingCount }})</span></button>
+          <button class="filter-btn green" [class.active]="queueFilter === 'verified'"
+            (click)="setQueueFilter('verified')">Verified <span class="badge">({{ verifiedCount }})</span></button>
+        </div>
+      </div>
+
+      <div *ngIf="isLoading" class="loading-state">
+        <span class="spinner large-spinner"></span>
+        <p>Loading database records...</p>
+      </div>
+
+      <div *ngIf="!isLoading && filteredReports.length === 0" class="empty-state glass-card">
+        <span class="material-symbols-outlined">checklist</span>
+        <p>No community reports match this filter.</p>
+      </div>
+
+      <div class="reports-table-wrapper" *ngIf="!isLoading && filteredReports.length > 0">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Identifier</th>
+              <th>Description</th>
+              <th>Reports</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of filteredReports">
+              <td>
+                <span class="table-type-badge">{{ report.type | uppercase }}</span>
+              </td>
+              <td class="font-mono text-bold">{{ report.identifier }}</td>
+              <td class="cell-desc" [title]="report.description">{{ report.description }}</td>
+              <td>
+                <span class="report-count-badge">{{ report.report_count }}</span>
+              </td>
+              <td>
+                <span class="status-badge" [class.verified]="report.verified === 1"
+                  [class.pending]="report.verified !== 1">
+                  <span class="material-symbols-outlined status-dot">{{ report.verified === 1 ? 'check_circle' :
+                    'schedule' }}</span>
+                  {{ report.verified === 1 ? 'Verified' : 'Pending Review' }}
+                </span>
+              </td>
+              <td class="actions-cell">
+                <button *ngIf="report.verified !== 1" class="action-btn verify-btn" title="Approve &amp; Verify Report"
+                  (click)="verifyReport(report.id)">
+                  <span class="material-symbols-outlined">verified</span>
+                </button>
+                <button class="action-btn delete-btn" title="Delete Entry" (click)="deleteReport(report.id)">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. WHATSAPP ALERTS LIST -->
+    <div *ngIf="activeTab === 'subscribers'" class="tab-pane">
+      <div class="queue-header">
+        <h2 class="pane-subtitle">WhatsApp Alert Subscribers</h2>
+        <p class="pane-desc">Directory of users subscribed to receive scam notification alerts via WhatsApp.</p>
+      </div>
+
+      <div *ngIf="isLoading" class="loading-state">
+        <span class="spinner large-spinner"></span>
+        <p>Loading subscribers list...</p>
+      </div>
+
+      <div *ngIf="!isLoading && subscribers.length === 0" class="empty-state glass-card">
+        <span class="material-symbols-outlined">no_accounts</span>
+        <p>No active WhatsApp alert subscribers found.</p>
+      </div>
+
+      <div class="reports-table-wrapper" *ngIf="!isLoading && subscribers.length > 0">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Subscriber Phone</th>
+              <th>Alert Categories</th>
+              <th>Status</th>
+              <th>Registered</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sub of subscribers">
+              <td class="font-mono text-bold">+{{ sub.phone }}</td>
+              <td class="cell-desc">{{ sub.categories }}</td>
+              <td>
+                <span class="status-badge" [class.verified]="sub.active === 1" [class.pending]="sub.active !== 1">
+                  <span class="material-symbols-outlined status-dot">{{ sub.active === 1 ? 'check_circle' : 'block'
+                    }}</span>
+                  {{ sub.active === 1 ? 'Active' : 'Disabled' }}
+                </span>
+              </td>
+              <td class="date-cell">{{ sub.created_at | date:'mediumDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

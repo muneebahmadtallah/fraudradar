@@ -1,0 +1,128 @@
+<div class="admin-payments-container container">
+  
+  <!-- Back Link and Header -->
+  <div class="admin-header">
+    <a routerLink="/admin" class="back-link">
+      <span class="material-symbols-outlined">arrow_back</span> Back to Scam Manager
+    </a>
+    
+    <div class="title-row">
+      <div>
+        <h1 class="page-title">Payment Verification</h1>
+        <p class="page-subtitle">Verify user subscription payment proofs and approve upgrades.</p>
+      </div>
+      <button class="btn btn-secondary reload-btn" (click)="loadPayments()" [disabled]="isLoading">
+        <span class="material-symbols-outlined">refresh</span> Refresh List
+      </button>
+    </div>
+  </div>
+
+  <!-- Status Filters -->
+  <div class="filter-bar">
+    <button class="filter-btn" [class.active]="statusFilter === 'all'" (click)="setFilter('all')">
+      All Proofs <span class="badge">{{ payments.length }}</span>
+    </button>
+    <button class="filter-btn pending" [class.active]="statusFilter === 'pending'" (click)="setFilter('pending')">
+      Pending <span class="badge">{{ getCountByStatus('pending') }}</span>
+    </button>
+    <button class="filter-btn approved" [class.active]="statusFilter === 'approved'" (click)="setFilter('approved')">
+      Approved <span class="badge">{{ getCountByStatus('approved') }}</span>
+    </button>
+    <button class="filter-btn rejected" [class.active]="statusFilter === 'rejected'" (click)="setFilter('rejected')">
+      Rejected <span class="badge">{{ getCountByStatus('rejected') }}</span>
+    </button>
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="content-area">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+      <span class="spinner"></span>
+      <p>Fetching payment proofs...</p>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && filteredPayments.length === 0" class="empty-state glass-card">
+      <span class="material-symbols-outlined empty-icon">receipt_long</span>
+      <h3>No payment proofs found</h3>
+      <p>Submissions matching the "{{ statusFilter }}" filter will appear here.</p>
+    </div>
+
+    <!-- Payment Proofs Grid -->
+    <div *ngIf="!isLoading && filteredPayments.length > 0" class="payments-grid">
+      <div class="glass-card payment-card" *ngFor="let payment of filteredPayments" [attr.data-status]="payment.status">
+        <div class="card-header">
+          <div class="user-info">
+            <h3 class="user-name">{{ payment.user_name }}</h3>
+            <span class="user-email">{{ payment.user_email }}</span>
+          </div>
+          <span class="plan-badge" [attr.data-plan]="payment.plan">
+            {{ payment.plan === 'plus' ? 'Shield Plus' : 'Shield Business' }}
+          </span>
+        </div>
+
+        <div class="card-body">
+          <div class="detail-row">
+            <span class="label">Amount Paid:</span>
+            <span class="value amount">Rs. {{ payment.amount | number }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Via:</span>
+            <span class="value method">
+              <span class="method-dot" [class.easypaisa]="payment.payment_method === 'easypaisa'"></span>
+              {{ payment.payment_method | titlecase }}
+            </span>
+          </div>
+          <div class="detail-row">
+            <span class="label">TID:</span>
+            <span class="value tid-code">{{ payment.transaction_id }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Submitted:</span>
+            <span class="value date">{{ payment.created_at | date:'medium' }}</span>
+          </div>
+
+          <!-- Thumbnail -->
+          <div class="screenshot-thumbnail" (click)="openPreview(payment.screenshot)">
+            <img [src]="payment.screenshot" alt="Payment Proof Receipt">
+            <div class="overlay">
+              <span class="material-symbols-outlined">zoom_in</span>
+              <span>View Receipt</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <!-- Pending Actions -->
+          <div class="action-buttons" *ngIf="payment.status === 'pending'">
+            <button class="btn btn-approve" (click)="verify(payment.id, 'approved')">
+              <span class="material-symbols-outlined">check_circle</span> Approve
+            </button>
+            <button class="btn btn-reject" (click)="verify(payment.id, 'rejected')">
+              <span class="material-symbols-outlined">cancel</span> Reject
+            </button>
+          </div>
+
+          <!-- Status Markers -->
+          <div class="status-marker approved" *ngIf="payment.status === 'approved'">
+            <span class="material-symbols-outlined">verified</span> Verified & Activated
+          </div>
+          <div class="status-marker rejected" *ngIf="payment.status === 'rejected'">
+            <span class="material-symbols-outlined">error</span> Rejected Proof
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screenshot Lightbox Modal -->
+  <div class="lightbox-modal" *ngIf="previewScreenshot" (click)="closePreview()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="close-btn" (click)="closePreview()">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <img [src]="previewScreenshot" alt="Receipt Screenshot Fullscreen">
+    </div>
+  </div>
+
+</div>

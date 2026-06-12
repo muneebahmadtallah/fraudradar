@@ -1,0 +1,115 @@
+<div class="whatsapp-container container">
+  <div class="coming-soon-overlay" (click)="$event.stopPropagation()">
+    <h1>Coming Soon</h1>
+  </div>
+  <!-- Back Link -->
+  <div class="page-nav">
+    <a routerLink="/" class="back-link">
+      <span class="material-symbols-outlined">arrow_back</span> Back to Dashboard
+    </a>
+  </div>
+
+  <div class="whatsapp-hero">
+    <div class="bell-glow floating-shield">
+      <span class="material-symbols-outlined bell-icon">notifications_active</span>
+    </div>
+    <h1 class="page-title">Get Real-Time Scam Alerts on WhatsApp</h1>
+    <p class="page-subtitle">
+      Subscribe to receive instant notifications when new scams are reported in Pakistan
+    </p>
+  </div>
+
+  <!-- Subscription Form -->
+  <div class="glass-card subscribe-card">
+    <h2 class="card-title">Subscribe Now</h2>
+
+    <form (ngSubmit)="onSubmit()">
+
+      <div *ngIf="status" class="status-banner" [class.success]="status.success" [class.error]="!status.success">
+        <span class="material-symbols-outlined">
+          {{ status.success ? 'check_circle' : 'error' }}
+        </span>
+        <span>{{ status.message }}</span>
+      </div>
+
+      <!-- WhatsApp input -->
+      <div class="form-group">
+        <label for="wa-phone">WhatsApp Number</label>
+        <div class="phone-input-group">
+          <span class="country-prefix">+92</span>
+          <input type="tel" id="wa-phone" [(ngModel)]="phone" name="phone" placeholder="3001234567" required>
+        </div>
+        <p class="input-hint">Enter your number without country code or leading zero.</p>
+      </div>
+
+      <!-- Categories Checkbox Options -->
+      <div class="form-group">
+        <label>Alert Categories</label>
+        <div class="cat-options-list">
+          <div *ngFor="let cat of categories" class="cat-option-row" [class.checked]="cat.checked"
+            (click)="toggleCategory(cat.id)">
+
+            <div class="custom-checkbox" [class.checked]="cat.checked">
+              <span class="material-symbols-outlined checkbox-icon" *ngIf="cat.checked">check</span>
+            </div>
+
+            <div class="cat-text">
+              <span class="cat-label">{{ cat.label }}</span>
+              <span class="cat-desc">{{ cat.desc }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary subscribe-btn" [disabled]="isSubmitting">
+        <span *ngIf="isSubmitting" class="spinner"></span>
+        <span *ngIf="!isSubmitting">
+          <span class="material-symbols-outlined">notifications</span> Subscribe to Alerts
+        </span>
+      </button>
+
+      <p class="opt-out-text">By subscribing, you'll receive WhatsApp alerts about reported scams. You can unsubscribe
+        anytime.</p>
+    </form>
+  </div>
+
+  <!-- Info Cards Block -->
+  <div class="info-grid">
+    <div class="glass-card info-card">
+      <span class="material-symbols-outlined info-icon icon-amber">campaign</span>
+      <div>
+        <h4>Instant Notifications</h4>
+        <p>Get alerted within minutes when high-risk scams are reported by the community.</p>
+      </div>
+    </div>
+
+    <div class="glass-card info-card">
+      <span class="material-symbols-outlined info-icon icon-blue">shield</span>
+      <div>
+        <h4>Stay Protected</h4>
+        <p>Know about the latest scam tactics before they reach you or your loved ones.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Setup Guidelines -->
+  <!-- <div class="glass-card setup-card">
+    <div class="setup-header">
+      <span class="material-symbols-outlined setup-icon">developer_mode</span>
+      <h3>WhatsApp Setup Required (For Admins)</h3>
+    </div>
+    
+    <p>To enable WhatsApp notifications, you need to configure Twilio WhatsApp API credentials:</p>
+    
+    <ul class="setup-steps">
+      <li>Create a <a href="https://twilio.com" target="_blank" class="setup-link">Twilio account</a></li>
+      <li>Enable WhatsApp on Twilio Console</li>
+      <li>Set environment variables: 
+        <code>TWILIO_ACCOUNT_SID</code>, 
+        <code>TWILIO_AUTH_TOKEN</code>, 
+        <code>TWILIO_WHATSAPP_NUMBER</code>
+      </li>
+    </ul>
+  </div> -->
+
+</div>
