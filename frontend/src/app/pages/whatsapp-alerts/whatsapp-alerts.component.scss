@@ -14,7 +14,8 @@
     font-weight: 500;
 
     &:hover {
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
     }
   }
 }
@@ -114,7 +115,8 @@
 
   .country-prefix {
     background-color: var(--surface-hover);
-    color: var(--text-primary);
+    //color: var(--text-primary);
+    color: #F9FAFB !important;
     padding: 14px 20px;
     font-weight: 600;
     font-size: 1rem;
@@ -128,7 +130,8 @@
     background: none;
     border: none;
     padding: 14px 20px;
-    color: var(--text-primary);
+    //color: var(--text-primary);
+    color: #F9FAFB !important;
     font-size: 1rem;
     outline: none;
 
@@ -204,7 +207,8 @@
   .cat-label {
     font-weight: 700;
     font-size: 0.95rem;
-    color: var(--text-primary);
+    //color: var(--text-primary);
+    color: #F9FAFB !important;
   }
 
   .cat-desc {

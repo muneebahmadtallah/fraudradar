@@ -10,7 +10,7 @@
   margin-bottom: 40px;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 12px;
-  
+
   .tab-btn {
     display: flex;
     align-items: center;
@@ -24,16 +24,17 @@
     cursor: pointer;
     border-radius: 8px;
     transition: all var(--transition-speed);
-    
+
     span {
       font-size: 22px;
     }
-    
+
     &:hover {
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
       background-color: rgba(255, 255, 255, 0.03);
     }
-    
+
     &.active {
       color: var(--primary);
       background-color: var(--primary-glow);
@@ -51,33 +52,41 @@
 
 .option-card {
   cursor: pointer;
-  
+
   &.selected {
     border-color: var(--primary);
     background: rgba(34, 197, 94, 0.04);
     box-shadow: 0 0 15px rgba(34, 197, 94, 0.08);
   }
-  
+
   .option-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 12px;
-    
+
     .option-icon {
       font-size: 26px;
     }
-    
-    .color-green { color: var(--primary); }
-    .color-blue { color: var(--secondary); }
-    .color-amber { color: var(--amber); }
-    
+
+    .color-green {
+      color: var(--primary);
+    }
+
+    .color-blue {
+      color: var(--secondary);
+    }
+
+    .color-amber {
+      color: var(--amber);
+    }
+
     h3 {
       font-size: 1.15rem;
       font-weight: 700;
     }
   }
-  
+
   .option-desc {
     font-size: 0.9rem;
     color: var(--text-muted);
@@ -89,55 +98,57 @@
 .check-input-card {
   padding: 16px;
   margin-bottom: 40px;
-  
+
   .input-form {
     display: flex;
     gap: 12px;
     width: 100%;
-    
+
     @media (max-width: 768px) {
       flex-direction: column;
     }
   }
-  
+
   .input-container {
     position: relative;
     flex-grow: 1;
     display: flex;
     align-items: center;
-    
+
     .prefix-icon {
       position: absolute;
       left: 16px;
       color: var(--text-muted);
       font-size: 22px;
     }
-    
-    input, textarea {
+
+    input,
+    textarea {
       width: 100%;
       background-color: rgba(10, 15, 30, 0.4);
       border: 1px solid var(--border-color);
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
       border-radius: 10px;
       padding: 14px 16px 14px 48px;
       font-size: 1rem;
       transition: border-color var(--transition-speed);
-      
+
       &:focus {
         outline: none;
         border-color: rgba(255, 255, 255, 0.2);
       }
     }
-    
+
     textarea {
       padding: 14px 16px 14px 48px;
       resize: vertical;
     }
   }
-  
+
   button {
     min-width: 140px;
-    
+
     @media (max-width: 768px) {
       width: 100%;
     }
@@ -149,31 +160,43 @@
   padding: 32px;
   margin-bottom: 40px;
   border-left-width: 4px !important;
-  
+
   &.risk-safe {
     border-left-color: var(--primary);
     background: linear-gradient(to right, rgba(34, 197, 94, 0.03), transparent);
-    .gauge-fill { background-color: var(--primary); }
+
+    .gauge-fill {
+      background-color: var(--primary);
+    }
   }
-  
+
   &.risk-warning {
     border-left-color: var(--amber);
     background: linear-gradient(to right, rgba(245, 158, 11, 0.03), transparent);
-    .gauge-fill { background-color: var(--amber); }
+
+    .gauge-fill {
+      background-color: var(--amber);
+    }
   }
-  
+
   &.risk-danger {
     border-left-color: #EF4444;
     background: linear-gradient(to right, rgba(239, 68, 68, 0.03), transparent);
-    .gauge-fill { background-color: #EF4444; }
-    .verdict-title { color: #EF4444; }
+
+    .gauge-fill {
+      background-color: #EF4444;
+    }
+
+    .verdict-title {
+      color: #EF4444;
+    }
   }
-  
+
   .result-header {
     display: flex;
     align-items: center;
     gap: 32px;
-    
+
     @media (max-width: 768px) {
       flex-direction: column;
       align-items: flex-start;
@@ -190,7 +213,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   .gauge-track {
     position: absolute;
     width: 100%;
@@ -198,7 +221,7 @@
     border-radius: 50%;
     border: 8px solid rgba(255, 255, 255, 0.05);
   }
-  
+
   .gauge-fill {
     position: absolute;
     width: 100%;
@@ -208,17 +231,17 @@
     border-top-color: inherit;
     transition: transform 1s ease-out;
   }
-  
+
   .gauge-score {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     .score-num {
       font-size: 1.5rem;
       font-weight: 800;
     }
-    
+
     .score-lbl {
       font-size: 0.75rem;
       color: var(--text-muted);
@@ -230,13 +253,13 @@
 
 .result-details {
   flex-grow: 1;
-  
+
   .verdict-title {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 6px;
   }
-  
+
   .verdict-desc {
     color: var(--text-muted);
     font-size: 0.95rem;
@@ -249,7 +272,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  
+
   .tag-badge {
     background-color: var(--surface-hover);
     border: 1px solid var(--border-color);
@@ -265,37 +288,37 @@
   margin-top: 28px;
   border-top: 1px solid var(--border-color);
   padding-top: 20px;
-  
+
   h4 {
     font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 14px;
   }
-  
+
   .report-records-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .record-item {
     background-color: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 14px 16px;
   }
-  
+
   .record-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 6px;
-    
+
     .record-date {
       font-size: 0.8rem;
       color: var(--text-muted);
     }
-    
+
     .record-badge {
       font-size: 0.75rem;
       background-color: rgba(245, 158, 11, 0.1);
@@ -304,7 +327,7 @@
       padding: 2px 8px;
       border-radius: 4px;
       font-weight: 600;
-      
+
       &.verified {
         background-color: rgba(239, 68, 68, 0.1);
         border-color: rgba(239, 68, 68, 0.2);
@@ -312,7 +335,7 @@
       }
     }
   }
-  
+
   .record-desc {
     font-size: 0.9rem;
     line-height: 1.4;
@@ -323,16 +346,16 @@
 .report-form-card {
   max-width: 680px;
   margin: 0 auto;
-  
+
   .form-header {
     margin-bottom: 28px;
-    
+
     h2 {
       font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 4px;
     }
-    
+
     p {
       color: var(--text-muted);
       font-size: 0.95rem;
@@ -359,7 +382,8 @@
       width: 100%;
       background-color: rgba(10, 15, 30, 0.4);
       border: 1px solid var(--border-color);
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
       border-radius: 10px;
       padding: 14px 16px 14px 50px;
       font-size: 1rem;
@@ -400,11 +424,11 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-bottom: 8px;
-  
+
   @media (max-width: 480px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .type-btn {
     background-color: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-color);
@@ -415,12 +439,13 @@
     font-size: 0.9rem;
     cursor: pointer;
     transition: all var(--transition-speed);
-    
+
     &:hover {
       background-color: rgba(255, 255, 255, 0.05);
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
     }
-    
+
     &.active {
       border-color: var(--primary);
       background-color: var(--primary-glow);
@@ -438,13 +463,13 @@
   font-size: 0.95rem;
   font-weight: 500;
   margin-bottom: 24px;
-  
+
   &.success {
     background-color: rgba(34, 197, 94, 0.1);
     border: 1px solid rgba(34, 197, 94, 0.2);
     color: var(--primary);
   }
-  
+
   &.error {
     background-color: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.2);
@@ -463,13 +488,13 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 32px;
-  
+
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
   }
-  
+
   h2 {
     font-size: 1.6rem;
     font-weight: 700;
@@ -483,7 +508,7 @@
   padding-bottom: 4px;
   width: 100%;
   max-width: fit-content;
-  
+
   .pill {
     background-color: var(--surface-color);
     border: 1px solid var(--border-color);
@@ -495,15 +520,18 @@
     cursor: pointer;
     transition: all var(--transition-speed);
     white-space: nowrap;
-    
+
     &:hover {
       background-color: var(--surface-hover);
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
     }
-    
+
     &.active {
-      background-color: var(--text-primary);
-      border-color: var(--text-primary);
+      background- //color: var(--text-primary);
+      color: #F9FAFB !important;
+      border- //color: var(--text-primary);
+      color: #F9FAFB !important;
       color: var(--bg-color);
     }
   }
@@ -517,13 +545,13 @@
 
 .scam-feed-card {
   padding: 24px;
-  
+
   .feed-card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
-    
+
     .type-badge {
       display: inline-flex;
       align-items: center;
@@ -534,41 +562,43 @@
       border: 1px solid var(--border-color);
       padding: 4px 10px;
       border-radius: 6px;
-      
-      span { font-size: 16px; }
+
+      span {
+        font-size: 16px;
+      }
     }
-    
+
     .score-badge {
       font-size: 0.8rem;
       font-weight: 700;
       color: var(--amber);
-      
+
       &.bad {
         color: #EF4444;
       }
     }
   }
-  
+
   .feed-identifier {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 8px;
   }
-  
+
   .feed-desc {
     color: var(--text-muted);
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 16px;
   }
-  
+
   .feed-card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid var(--border-color);
     padding-top: 14px;
-    
+
     .feed-date {
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -588,9 +618,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: all var(--transition-speed);
-  
-  span { font-size: 16px; }
-  
+
+  span {
+    font-size: 16px;
+  }
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
@@ -606,33 +638,44 @@
 
 .tip-card {
   padding: 24px;
-  
+
   .tip-header {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 14px;
-    
+
     .tip-icon {
       font-size: 26px;
     }
-    
-    .icon-green { color: var(--primary); }
-    .icon-blue { color: var(--secondary); }
-    .icon-amber { color: var(--amber); }
-    .icon-purple { color: #A855F7; }
-    
+
+    .icon-green {
+      color: var(--primary);
+    }
+
+    .icon-blue {
+      color: var(--secondary);
+    }
+
+    .icon-amber {
+      color: var(--amber);
+    }
+
+    .icon-purple {
+      color: #A855F7;
+    }
+
     h3 {
       font-size: 1.15rem;
       font-weight: 700;
     }
   }
-  
+
   p {
     color: var(--text-muted);
     font-size: 0.9rem;
     line-height: 1.5;
-    
+
     code {
       background-color: rgba(0, 0, 0, 0.3);
       padding: 2px 6px;
@@ -643,7 +686,8 @@
   }
 }
 
-.loading-state, .empty-state {
+.loading-state,
+.empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -652,7 +696,7 @@
   text-align: center;
   gap: 16px;
   color: var(--text-muted);
-  
+
   span {
     font-size: 40px;
   }

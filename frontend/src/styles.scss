@@ -3,23 +3,23 @@
   --bg-color: #0A0F1E;
   --surface-color: #111827;
   --surface-hover: #1F2937;
-  
+
   --primary: #22C55E;
   --primary-hover: #16A34A;
   --primary-glow: rgba(34, 197, 94, 0.15);
-  
+
   --secondary: #3B82F6;
   --secondary-hover: #2563EB;
-  
+
   --amber: #F59E0B;
   --amber-hover: #D97706;
-  
-  --text-primary: #F9FAFB;
+
+  --text-primary: #F9FAFB !important;
   --text-muted: #9CA3AF;
-  
+
   --border-color: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(34, 197, 94, 0.3);
-  
+
   --transition-speed: 0.3s;
 }
 
@@ -32,7 +32,8 @@
 
 body {
   background-color: var(--bg-color);
-  color: var(--text-primary);
+  // //color: var(--text-primary);
+  color: #F9FAFB !important;
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,7 +46,10 @@ a {
   text-decoration: none;
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: inherit;
   color: inherit;
 }
@@ -88,8 +92,13 @@ button, input, textarea, select {
 }
 
 @keyframes borderGlow {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }
 
 /* Standard Buttons */
@@ -120,7 +129,8 @@ button, input, textarea, select {
 
 .btn-secondary {
   background-color: var(--surface-hover);
-  color: var(--text-primary);
+  // //color: var(--text-primary);
+  color: #F9FAFB !important;
   border: 1px solid var(--border-color);
 }
 
@@ -162,22 +172,33 @@ button, input, textarea, select {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-color);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--surface-hover);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #374151;
 }
 
 /* Floating Animations */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .floating-shield {

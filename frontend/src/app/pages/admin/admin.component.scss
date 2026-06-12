@@ -29,7 +29,7 @@
       font-size: 2rem;
       font-weight: 800;
       margin-bottom: 4px;
-      background: linear-gradient(135deg, #F9FAFB 0%, #9CA3AF 100%);
+      background: linear-gradient(135deg, #F9FAFB 0%, #9CA3AF 100%) !important;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -75,7 +75,8 @@
     }
 
     &:hover {
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
       background: rgba(255, 255, 255, 0.04);
     }
 
@@ -178,7 +179,8 @@
   .admin-select {
     background-color: rgba(17, 24, 39, 0.9);
     border: 1px solid var(--border-color);
-    color: var(--text-primary);
+    //color: var(--text-primary);
+    color: #F9FAFB !important;
     padding: 12px 16px;
     border-radius: 10px;
     font-size: 0.95rem;
@@ -223,7 +225,8 @@
       background: transparent;
       border: none;
       outline: none;
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
       font-size: 0.95rem;
       padding: 12px 14px 12px 0;
     }
@@ -232,7 +235,8 @@
   textarea {
     background-color: rgba(17, 24, 39, 0.9);
     border: 1px solid var(--border-color);
-    color: var(--text-primary);
+    //color: var(--text-primary);
+    color: #F9FAFB !important;
     padding: 12px 16px;
     border-radius: 10px;
     font-size: 0.95rem;
@@ -343,7 +347,8 @@
 
   .text-bold {
     font-weight: 600;
-    color: var(--text-primary);
+    //color: var(--text-primary);
+    color: #F9FAFB !important;
   }
 
   .cell-desc {
@@ -540,7 +545,8 @@
 
     &:hover {
       border-color: rgba(255, 255, 255, 0.2);
-      color: var(--text-primary);
+      //color: var(--text-primary);
+      color: #F9FAFB !important;
     }
 
     &.active {
