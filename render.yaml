@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: fraudradar
+    env: node
+    buildCommand: "./render-build.sh"
+    # Render will exit after the script finishes, so you can leave startCommand empty
+    # (the script already starts the server)
