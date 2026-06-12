@@ -7,9 +7,9 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ScamService {
-  private apiUrl = 'http://localhost:3000/api/scams';
-  private statsUrl = 'http://localhost:3000/api/stats';
-  private whatsappUrl = 'http://localhost:3000/api/whatsapp';
+  private apiUrl = '/api/scams';
+  private statsUrl = '/api/stats';
+  private whatsappUrl = '/api/whatsapp';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

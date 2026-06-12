@@ -7,7 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class PaymentService {
-  private apiUrl = 'http://localhost:3000/api/payments';
+  private apiUrl = '/api/payments';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

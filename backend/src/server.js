@@ -1,4 +1,9 @@
 require('dotenv').config();
+
+// Fallback defaults for production (Render) where .env is not present
+if (!process.env.JWT_SECRET) process.env.JWT_SECRET = 'fraudradar_super_secret_key_2024_production';
+if (!process.env.JWT_EXPIRES_IN) process.env.JWT_EXPIRES_IN = '7d';
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
