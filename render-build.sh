@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "=== Installing Yarn globally (npm) ==="
-npm i -g yarn   # Yarn 1.x will be installed
+echo "=== Installing backend dependencies ==="
+cd backend
+npm install
+cd ..
 
-echo "=== Running original Render commands ==="
-yarn --cwd backend install
-yarn --cwd frontend install
-yarn --cwd frontend run build --configuration production
+echo "=== Installing frontend dependencies ==="
+cd frontend
+npm install
+echo "=== Building frontend ==="
+npx ng build --configuration production
+cd ..
+
+echo "=== Build complete! ==="
