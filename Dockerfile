@@ -18,7 +18,8 @@ FROM node:20-alpine AS runtime
 WORKDIR /app
 
 # Copy backend files
-COPY --from=backend-builder /app/backend .
+COPY --from=backend-builder /app/backend/node_modules ./node_modules
+COPY --from=backend-builder /app/backend ./
 
 # Copy built Angular assets
 COPY --from=frontend-builder /app/frontend/dist ./frontend/dist
