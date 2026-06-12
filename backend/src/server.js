@@ -54,7 +54,7 @@ app.use((err, req, res, next) => {
 // Serve Angular front‑end in production
 if (process.env.NODE_ENV === 'production') {
   const path = require('path');
-  const clientBuildPath = path.resolve(__dirname, '../../frontend/dist');
+  const clientBuildPath = path.resolve(__dirname, '../../frontend/dist/frontend');
 
   // Resolve the Angular build output directory (dist/frontend)
   app.use(express.static(clientBuildPath));
