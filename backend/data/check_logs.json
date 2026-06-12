@@ -241,5 +241,41 @@
     "result": "safe",
     "risk_score": 8,
     "created_at": "2026-06-12T10:32:49.216Z"
+  },
+  {
+    "id": "b47b0373-4608-4bea-81e2-428b2c5921b6",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "090909",
+    "result": "safe",
+    "risk_score": 14,
+    "created_at": "2026-06-12T18:21:21.795Z"
+  },
+  {
+    "id": "b8f8950d-6657-4bd5-af1e-9e83f30a0244",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "121212\\",
+    "result": "safe",
+    "risk_score": 13,
+    "created_at": "2026-06-12T18:21:26.545Z"
+  },
+  {
+    "id": "046dd9f8-e21a-4a3a-967a-b90d6a4f535b",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "121212",
+    "result": "danger",
+    "risk_score": 95,
+    "created_at": "2026-06-12T18:21:27.732Z"
+  },
+  {
+    "id": "f620af13-22d6-4d2b-8f86-5ec25e4d15e4",
+    "user_id": "0984f3d8-ff50-48e7-a364-cd152362ad7f",
+    "check_type": "phone",
+    "query": "0099",
+    "result": "safe",
+    "risk_score": 1,
+    "created_at": "2026-06-12T18:22:19.861Z"
   }
 ]
